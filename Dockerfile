@@ -7,9 +7,9 @@ WORKDIR /app
 COPY . .
 
 RUN \
-  if [ -f yarn.lock ]; then yarn --frozen-lockfile && yarn build; \
+  if [ -f yarn.lock ]; then yarn && yarn build; \
   elif [ -f package-lock.json ]; then npm ci && npm run build; \
-  elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm i --frozen-lockfile && pnpm run build; \
+  elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm i && pnpm run build; \
   else echo "Lockfile not found." && exit 1; \
   fi
 
